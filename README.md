@@ -1,7 +1,10 @@
 # projects
 import java.io.*;
+
 import java.time.LocalDate;
+
 import java.util.*;
+
 public class Main {
 
     static Scanner sc = new Scanner(System.in);
@@ -115,9 +118,13 @@ public class Main {
 }
 
 class Expense {
+
     private String date;
+    
     private String category;
+
     private String description;
+    
     private double amount;
 
     public Expense(String date, String category, String description, double amount) {
