@@ -3,14 +3,18 @@ import java.io.*;
 import java.time.LocalDate;
 import java.util.*;
 public class Main {
+
     static Scanner sc = new Scanner(System.in);
     static ArrayList<Expense> expenses = new ArrayList<>();
     static String fileName;
     static double total = 0;
+    
     public static void main(String[] args) {
+    
         int year = LocalDate.now().getYear();
         fileName = "expenses_" + year + ".txt";
         loadExpenses();
+        
         while (true) {
             System.out.println("\n========== Expense Tracker ==========");
             System.out.println("1. Add Expense");
@@ -18,21 +22,27 @@ public class Main {
             System.out.println("3. Total Expense");
             System.out.println("4. Exit");
             System.out.print("Choice: ");
+            
             int choice = sc.nextInt();
+            
             sc.nextLine();
             switch (choice) {
                 case 1:
                     addExpense();
                     break;
+                    
                 case 2:
                     viewExpenses();
                     break;
+                    
                 case 3:
                     totalExpense();
                     break;
+                    
                 case 4:
                     System.out.println("Thankyou");
                     return;
+                    
                 default:
                     System.out.println("Invalid Choice.");
             }
