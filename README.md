@@ -1,153 +1,52 @@
-# Software Development Project
-import java.io.*;
+# Expense Tracker
 
-import java.time.LocalDate;
+A Java-based expense tracking application developed to practice programming fundamentals and basic data management.
 
-import java.util.*;
+## Overview
 
-public class Main {
+This project is a simple console-based application that allows users to record and manage expense information during program execution.
 
-    static Scanner sc = new Scanner(System.in);
-    static ArrayList<Expense> expenses = new ArrayList<>();
-    static String fileName;
-    static double total = 0;
-    
-    public static void main(String[] args) {
-    
-        int year = LocalDate.now().getYear();
-        fileName = "expenses_" + year + ".txt";
-        loadExpenses();
-        
-        while (true) {
-            System.out.println("\n========== Expense Tracker ==========");
-            System.out.println("1. Add Expense");
-            System.out.println("2. View Expenses");
-            System.out.println("3. Total Expense");
-            System.out.println("4. Exit");
-            System.out.print("Choice: ");
-            
-            int choice = sc.nextInt();
-            
-            sc.nextLine();
-            switch (choice) {
-                case 1:
-                    addExpense();
-                    break;
-                    
-                case 2:
-                    viewExpenses();
-                    break;
-                    
-                case 3:
-                    totalExpense();
-                    break;
-                    
-                case 4:
-                    System.out.println("Thankyou");
-                    return;
-                    
-                default:
-                    System.out.println("Invalid Choice.");
-            }
-        }
-    }
+## Features
 
-    static void addExpense() {
-        System.out.print("Date (DD-MM-YYYY): ");
-        String date = sc.nextLine();
+- Add expense records
+- Store expense information during program execution
+- View recorded expenses
+- Work with basic date and expense information
+- Simple console-based interaction
 
-        System.out.print("Category: ");
-        String category = sc.nextLine();
+## Technologies Used
 
-        System.out.print("Description: ");
-        String description = sc.nextLine();
+- Java
+- Java Standard Library
 
-        System.out.print("Amount: ");
-        double amount = sc.nextDouble();
-        sc.nextLine();
+## Concepts Practiced
 
-        Expense e = new Expense(date, category, description, amount);
-        expenses.add(e);
-        total += amount;
-        saveExpense(e);
-        System.out.println("Expense Saved Successfully.");
-    }
+- Classes and objects
+- Variables and data types
+- Conditional statements
+- Loops
+- Collections
+- User input
+- Date handling
+- Basic object-oriented programming
 
-    static void viewExpenses() {
-        if (expenses.isEmpty()) {
-            System.out.println("No Expenses Found.");
-            return;
-        }
-        for (Expense e : expenses) {
-            System.out.println(e);
-        }
-    }
-    static void totalExpense() {
-        System.out.println("Total = ₹" + total);
-    }
-    static void saveExpense(Expense e) {
-        try (FileWriter fw = new FileWriter(fileName, true)) {
-            fw.write(e.toFileString() + "\n");
-        } catch (IOException ex) {
-            System.out.println("Error Saving File");
-        }
-    }
-    static void loadExpenses() {
-        try {
-            File file = new File(fileName);
-            if (!file.exists()) return;
-            Scanner reader = new Scanner(file);
-            while (reader.hasNextLine()) {
-                String line = reader.nextLine();
-                String[] data = line.split(",", 4);
-                if (data.length == 4) {
-                    Expense e = new Expense(
-                            data[0],
-                            data[1],
-                            data[2],
-                            Double.parseDouble(data[3]));
-                    expenses.add(e);
-                    total += e.getAmount();
-                }
-            }
-            reader.close();
-        } catch (Exception e) {
-            System.out.println("Error Loading Data");
-        }
-    }
-}
+## How to Run
 
-class Expense {
+1. Make sure Java is installed on your system.
+2. Clone the repository.
+3. Open the project in a Java-supported IDE or terminal.
+4. Compile the Java source file.
+5. Run the application.
 
-    private String date;
-    
-    private String category;
+## Project Status
 
-    private String description;
-    
-    private double amount;
+Completed as a learning project and may be extended with additional features in the future.
 
-    public Expense(String date, String category, String description, double amount) {
-        this.date = date;
-        this.category = category;
-        this.description = description;
-        this.amount = amount;
-    }
+## Author
 
-    public double getAmount() {
-        return amount;
-    }
+**Abhijoy Mukherjee**
 
-    public String getDate() {
-        return date;
-    }
+B.Tech – Information Technology
 
-    public String toFileString() {
-        return date + "," + category + "," + description + "," + amount;
-    }
-
-    @Override
-    public String toString() {
-        return date + " | " + category + " | " + description + " | ₹" + amount;
-    }
-}
+[LinkedIn](https://www.linkedin.com/in/abhijoy-mukherjee-140a67421) ·
+[GitHub](https://github.com/abhijoymukherjee53-bot)
